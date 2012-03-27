@@ -5,6 +5,7 @@
 # Copyright 2012, Michiel Sikkes
 #
 
+include_recipe "mysql"
 include_recipe "git"
 include_recipe "java"
 include_recipe "jenkins"
