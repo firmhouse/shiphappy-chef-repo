@@ -7,4 +7,4 @@
 
 include_recipe "java"
 include_recipe "jenkins"
-include_recipe "jenkins::proxy_nginx"
+include_recipe "jenkins-admin"

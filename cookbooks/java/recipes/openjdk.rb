@@ -75,6 +75,10 @@ if platform?("ubuntu","debian","redhat","centos","fedora","scientific","amazon")
   end
 end
 
+execute "apt-get update" do
+  command "apt-get update"
+end
+
 pkgs.each do |pkg|
   package pkg do
     action :install

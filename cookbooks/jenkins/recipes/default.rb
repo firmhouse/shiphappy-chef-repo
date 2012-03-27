@@ -71,6 +71,7 @@ end
 case node.platform
 when "ubuntu", "debian"
   include_recipe "apt"
+  
   include_recipe "java"
 
   pid_file = "/var/run/jenkins/jenkins.pid"
@@ -153,11 +154,11 @@ log "jenkins: install and start" do
   end
 end
 
-template "/etc/default/jenkins"
+# template "/etc/default/jenkins"
 
 package "jenkins" do
   action :nothing
-  notifies :create, "template[/etc/default/jenkins]", :immediately
+  # notifies :create, "template[/etc/default/jenkins]", :immediately
 end
 
 # restart if this run only added new plugins

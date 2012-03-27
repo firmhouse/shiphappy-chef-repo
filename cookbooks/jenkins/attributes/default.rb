@@ -43,7 +43,7 @@ default[:jenkins][:iptables_allow] = "disable"
 
 #download the latest version of plugins, bypassing update center
 #example: ["git", "URLSCM", ...]
-default[:jenkins][:server][:plugins] = []
+default[:jenkins][:server][:plugins] = ["git"]
 
 #working around: http://tickets.opscode.com/browse/CHEF-1848
 #set to true if you have the CHEF-1848 patch applied
@@ -115,7 +115,7 @@ default[:jenkins][:node][:jvm_options] = nil
 #jenkins master defaults to: "#{ENV['HOME']}/.ssh/id_rsa"
 default[:jenkins][:node][:ssh_private_key] = nil
 
-default[:jenkins][:http_proxy][:variant]              = nil
+default[:jenkins][:http_proxy][:variant]              = "nginx"
 default[:jenkins][:http_proxy][:www_redirect]         = "disable"
 default[:jenkins][:http_proxy][:listen_ports]         = [ 80 ]
 default[:jenkins][:http_proxy][:host_name]            = nil
