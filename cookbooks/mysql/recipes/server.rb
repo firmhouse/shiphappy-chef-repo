@@ -118,6 +118,14 @@ unless platform?(%w{debian ubuntu})
 
 end
 
+ruby_block "create_databases_when_mysql_live" do
+  block do
+    loop do
+      break if File.exists?('/var/run/mysqld/mysqld.pid')
+    end
+  end
+end
+
 grants_path = node['mysql']['grants_path']
 
 begin
