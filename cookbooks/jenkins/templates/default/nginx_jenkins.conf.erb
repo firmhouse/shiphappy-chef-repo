@@ -17,7 +17,7 @@ server {
 <% @listen_ports.each do |port| -%>
   listen            <%= port %>;
 <% end -%>
-  server_name       <%= @host_name %><% @host_aliases.each do |a| %><%= " #{a}" %> <% end %>;
+#  server_name       <%= @host_name %><% @host_aliases.each do |a| %><%= " #{a}" %> <% end %>;
 
   client_max_body_size <%= @max_upload_size %>;
 
