@@ -1,7 +1,29 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <hudson>
   <useSecurity>true</useSecurity>
-  <authorizationStrategy class="hudson.security.FullControlOnceLoggedInAuthorizationStrategy"/>
+  <authorizationStrategy class="hudson.security.GlobalMatrixAuthorizationStrategy">
+    <permission>hudson.model.Computer.Configure:admin</permission>
+    <permission>hudson.model.Computer.Connect:admin</permission>
+    <permission>hudson.model.Computer.Create:admin</permission>
+    <permission>hudson.model.Computer.Delete:admin</permission>
+    <permission>hudson.model.Computer.Disconnect:admin</permission>
+    <permission>hudson.model.Hudson.Administer:admin</permission>
+    <permission>hudson.model.Hudson.Read:admin</permission>
+    <permission>hudson.model.Hudson.RunScripts:admin</permission>
+    <permission>hudson.model.Item.Build:admin</permission>
+    <permission>hudson.model.Item.Cancel:admin</permission>
+    <permission>hudson.model.Item.Configure:admin</permission>
+    <permission>hudson.model.Item.Create:admin</permission>
+    <permission>hudson.model.Item.Delete:admin</permission>
+    <permission>hudson.model.Item.Read:admin</permission>
+    <permission>hudson.model.Item.Workspace:admin</permission>
+    <permission>hudson.model.Run.Delete:admin</permission>
+    <permission>hudson.model.Run.Update:admin</permission>
+    <permission>hudson.model.View.Configure:admin</permission>
+    <permission>hudson.model.View.Create:admin</permission>
+    <permission>hudson.model.View.Delete:admin</permission>
+    <permission>hudson.scm.SCM.Tag:admin</permission>
+  </authorizationStrategy>
   <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
     <disableSignup>true</disableSignup>
     <enableCaptcha>false</enableCaptcha>
