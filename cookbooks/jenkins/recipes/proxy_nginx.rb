@@ -47,6 +47,8 @@ template "#{node[:nginx][:dir]}/sites-available/jenkins.conf" do
   end
 end
 
+execute "killall nginx"
+
 nginx_site "jenkins.conf" do
   if node[:jenkins][:http_proxy][:variant] == "nginx"
     enable true
@@ -54,3 +56,4 @@ nginx_site "jenkins.conf" do
     enable false
   end
 end
+
