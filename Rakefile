@@ -63,3 +63,8 @@ task :bundle_cookbook, :cookbook do |t, args|
 
   FileUtils.rm_rf temp_dir
 end
+
+desc "Bundle all cookbooks for distribution"
+task :bundle_cookbooks do
+  system("tar", "-czvf", "chef-solo.tar.gz", "cookbooks/")
+end
