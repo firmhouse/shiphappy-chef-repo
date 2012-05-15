@@ -22,8 +22,9 @@ end
 include_recipe "vim"
 include_recipe "mysql"
 include_recipe "mysql::server"
-include_recipe "databases"
 include_recipe "git"
 include_recipe "java"
 include_recipe "jenkins"
 include_recipe "jenkins-admin"
+
+include_recipe "configuration"
