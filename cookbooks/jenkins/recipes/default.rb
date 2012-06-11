@@ -102,6 +102,10 @@ when "centos", "redhat"
   end
 end
 
+remote_file "/tmp/jenkins_1.467_all.deb" do
+  source "http://pkg.jenkins-ci.org/debian/binary/jenkins_1.467_all.deb"
+end
+
 #"jenkins stop" may (likely) exit before the process is actually dead
 #so we sleep until nothing is listening on jenkins.server.port (according to netstat)
 ruby_block "netstat" do
@@ -146,6 +150,7 @@ ruby_block "block_until_operational" do
 end
 
 log "jenkins: install and start" do
+  notifies :install, "package[daemon]", :immediately
   notifies :install, "package[jenkins]", :immediately
   notifies :start, "service[jenkins]", :immediately unless install_starts_service
   notifies :create, "ruby_block[block_until_operational]", :immediately
@@ -156,8 +161,14 @@ end
 
 # template "/etc/default/jenkins"
 
+package "daemon" do
+  action :nothing
+end
+
 package "jenkins" do
   action :nothing
+  source "/tmp/jenkins_1.467_all.deb"
+  provider Chef::Provider::Package::Dpkg
   # notifies :create, "template[/etc/default/jenkins]", :immediately
 end
 

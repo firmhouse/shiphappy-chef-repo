@@ -66,5 +66,5 @@ end
 
 desc "Bundle all cookbooks for distribution"
 task :bundle_cookbooks do
-  system("tar", "-czvf", "chef-solo.tar.gz", "cookbooks/")
+  system("COPY_EXTENDED_ATTRIBUTES_DISABLE=true COPYFILE_DISABLE=true tar --exclude '\._*' -c -z -v -f chef-solo.tar.gz cookbooks/")
 end
