@@ -21,6 +21,7 @@
 require 'rubygems'
 require 'chef'
 require 'json'
+require 'fog'
 
 # Load constants from rake config file.
 require File.join(File.dirname(__FILE__), 'config', 'rake')
@@ -66,5 +67,27 @@ end
 
 desc "Bundle all cookbooks for distribution"
 task :bundle_cookbooks do
+  puts "Creating chef-solo.tar.gz from cookbooks..."
   system("COPY_EXTENDED_ATTRIBUTES_DISABLE=true COPYFILE_DISABLE=true tar --exclude '\._*' -c -z -v -f chef-solo.tar.gz cookbooks/")
+end
+
+
+desc "Bundle and upload cookbooks for distribution"
+task :deploy => :bundle_cookbooks do
+  connection = Fog::Storage.new({
+    :provider => 'AWS',
+    :aws_access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    :aws_secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
+    :region => 'eu-west-1'
+  })
+  
+  directory = connection.directories.get(ENV['BUCKET'])
+  
+  puts "Uploading chef-solo.tar.gz..."
+  file = directory.files.new({
+    :key => "chef-solo.tar.gz",
+    :body => File.open('chef-solo.tar.gz'),
+    :public => true
+  })
+  file.save
 end

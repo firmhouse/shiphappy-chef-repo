@@ -1,0 +1,10 @@
+Host *
+	StrictHostKeyChecking no
+	
+<% node.projects.each do |project| %>
+Host <%= project['slug'] %>
+  HostName github.com
+  User git
+  IdentityFile /var/lib/jenkins/.ssh/id_<%= project['slug'] %>
+
+<% end %>
