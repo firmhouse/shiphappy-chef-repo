@@ -13,7 +13,15 @@ node.projects.each do |project|
     owner "jenkins"
     group "jenkins"
     mode "0600"
-    variables :private_key => project['private_key']
+    variables :key => project['private_key']
+  end
+  
+  template "/var/lib/jenkins/.ssh/id_#{project['slug']}.pub" do
+    source "ssh_key.erb"
+    owner "jenkins"
+    group "jenkins"
+    mode "0600"
+    variables :key => project['ssh_public_key']
   end
 end
 
