@@ -9,3 +9,4 @@
 
 require_recipe "databases"
 require_recipe "deploy_keys"
+require_recipe "packages"
