@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "phantomjs"
+
 require_recipe "databases"
 require_recipe "deploy_keys"
 require_recipe "packages"

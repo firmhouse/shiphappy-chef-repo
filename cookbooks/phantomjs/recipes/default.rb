@@ -33,7 +33,7 @@ end
 remote_file "/usr/local/src/phantomjs-#{node['phantomjs']['version']}.tar.bz2" do
   action :create_if_missing
   backup false
-  checksum 'b429c15007e1ddcb43dfbb4b4b72f3e22906aad2'
+  # checksum 'b429c15007e1ddcb43dfbb4b4b72f3e22906aad2'
   mode '0644'
   source "http://phantomjs.googlecode.com/files/phantomjs-#{node['phantomjs']['version']}.tar.bz2"
 end
