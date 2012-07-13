@@ -19,7 +19,7 @@
 # limitations under the License.
 #
 
-include_recipe "nginx::source"
+include_recipe "nginx"
 
 if node[:jenkins][:http_proxy][:www_redirect] == "enable"
   www_redirect = true
@@ -47,8 +47,6 @@ template "#{node[:nginx][:dir]}/sites-available/jenkins.conf" do
   end
 end
 
-execute "killall nginx"
-
 nginx_site "jenkins.conf" do
   if node[:jenkins][:http_proxy][:variant] == "nginx"
     enable true
@@ -57,3 +55,6 @@ nginx_site "jenkins.conf" do
   end
 end
 
+nginx_site "default" do
+  enable false
+end

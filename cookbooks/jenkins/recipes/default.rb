@@ -102,8 +102,8 @@ when "centos", "redhat"
   end
 end
 
-remote_file "/tmp/jenkins_1.467_all.deb" do
-  source "http://pkg.jenkins-ci.org/debian/binary/jenkins_1.467_all.deb"
+remote_file "/tmp/jenkins_1.474_all.deb" do
+  source "http://pkg.jenkins-ci.org/debian/binary/jenkins_1.474_all.deb"
 end
 
 #"jenkins stop" may (likely) exit before the process is actually dead
@@ -167,7 +167,7 @@ end
 
 package "jenkins" do
   action :nothing
-  source "/tmp/jenkins_1.467_all.deb"
+  source "/tmp/jenkins_1.474_all.deb"
   provider Chef::Provider::Package::Dpkg
   # notifies :create, "template[/etc/default/jenkins]", :immediately
 end
