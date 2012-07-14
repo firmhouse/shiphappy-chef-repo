@@ -59,6 +59,7 @@ echo "test:\n  adapter: mysql2\n  username: root\n  password: jenkins\n  databas
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>export RAILS_ENV=test
+bundle exec rake db:schema:load
 bundle exec rake test</command>
     </hudson.tasks.Shell>
   </builders>
