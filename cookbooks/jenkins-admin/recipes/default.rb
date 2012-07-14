@@ -41,6 +41,13 @@ template "/var/lib/jenkins/.gitconfig" do
   group "jenkins"
 end
 
+template "/var/lib/jenkins/.gemrc" do
+  source "gemrc.erb"
+  mode "0660"
+  owner "jenkins"
+  group "jenkins"
+end
+
 log "Restarting Jenkins for new admin user..." do
   notifies :stop, "service[jenkins]", :immediately
   notifies :create, "ruby_block[netstat]", :immediately
