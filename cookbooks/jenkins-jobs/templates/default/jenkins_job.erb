@@ -54,7 +54,8 @@
   <builders>
     <hudson.tasks.Shell>
       <command>gem install bundler -v 1.1.4
-bundle</command>
+bundle
+echo "test:\n  adapter: mysql2\n  username: root\n  password: jenkins\n  database: <%= @slug %>_test\n" > config/database.yml</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>export RAILS_ENV=test
