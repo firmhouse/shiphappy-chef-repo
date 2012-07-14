@@ -53,7 +53,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>gem install bundler -v 1.1.4
+      <command>gem install bundler -v 1.1.4 --conservative
 bundle
 echo "test:\n  adapter: mysql2\n  username: root\n  password: jenkins\n  database: <%= @slug %>_test\n" > config/database.yml</command>
     </hudson.tasks.Shell>
