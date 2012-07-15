@@ -54,8 +54,8 @@
   <builders>
     <hudson.tasks.Shell>
       <command>gem install bundler -v 1.1.4 --conservative
-bundle
-echo "test:\n  adapter: mysql2\n  username: root\n  password: jenkins\n  database: <%= @slug %>_test\n" > config/database.yml</command>
+bundle install --without production
+echo "test:\n  adapter: <%= @database_gem %>\n  username: root\n  password: jenkins\n  database: <%= @slug %>_test\n" > config/database.yml</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>export RAILS_ENV=test
@@ -69,7 +69,7 @@ bundle exec rake test</command>
       <ruby-object ruby-class="Jenkins::Plugin::Proxies::BuildWrapper" pluginid="rvm">
         <pluginid pluginid="rvm" ruby-class="String">rvm</pluginid>
         <object ruby-class="RvmWrapper" pluginid="rvm">
-          <impl pluginid="rvm" ruby-class="String">ree@<%= @slug %></impl>
+          <impl pluginid="rvm" ruby-class="String"><%= @ruby_version %>@<%= @slug %></impl>
         </object>
       </ruby-object>
     </ruby-proxy-object>

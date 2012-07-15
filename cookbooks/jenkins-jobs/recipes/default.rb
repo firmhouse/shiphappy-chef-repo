@@ -21,11 +21,11 @@ node.projects.each do |project|
     owner "jenkins"
     group "jenkins"
     mode "0644"
-    variables :slug => project['slug'], :deploy_url => project['deploy_url']
+    variables :ruby_version => project['ruby_version'], :database_gem => project['database'], :slug => project['slug'], :deploy_url => project['deploy_url']
   end
 end
 
-execute "curl -X POST http://admin:admin@localhost/reload" do
+execute "curl -X POST http://api:#{node['instance_token']}@localhost/reload" do
   group "jenkins"
   user "jenkins"
 end
